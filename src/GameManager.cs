@@ -8,9 +8,9 @@ namespace MyGame.src
     public class GameManager
     {
         private bool _active;
-        Player player = new Player(new string[] { "player" } );
-     //   Enemy enemy1 = new Enemy1(0 ,0);
-       // Enemy enemy2 = new Enemy2(0 ,0);
+        private string _shotType;
+        Player _player = new Player(new string[] { "player" } );
+        EnemyManager _enemy = new EnemyManager();   
 
         public GameManager()
         {
@@ -43,27 +43,35 @@ namespace MyGame.src
             SwinGame.DrawText("Level: ", Color.White, 1040, 35);
 
 
-            player.Draw();
-    //        enemy1.Draw();
-      //      enemy2.Draw();
+            _player.Draw();
+            _enemy.EnemyStart();
 
             SwinGame.RefreshScreen();
         }
 
         public void Update()
         {
+            _player.MoveShip();
+
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {
-                player.ShootLaser();
+                _shotType = "laser";
+                _player.Shoot(_shotType);
+                SwinGame.RefreshScreen();
+                SwinGame.ClearScreen();
+                SwinGame.DrawBitmap("background", 0, 0);
             }
 
             if (SwinGame.KeyTyped(KeyCode.SKey))
             {
-                player.ShootSpecialLaser();
+                _shotType = "laserSpec";
+                _player.Shoot(_shotType);
+                SwinGame.RefreshScreen();
+                SwinGame.ClearScreen();
+                SwinGame.DrawBitmap("background", 0, 0);
             }
-
-            player.MoveShip();
         }
+
 
         public void LoadResources()
         {

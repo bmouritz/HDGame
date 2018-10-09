@@ -11,7 +11,7 @@ namespace MyGame.src
     {
         private int _x, _y;
 
-        public virtual void DrawMenu(string menu, float X, float Y)
+        public void Draw(string menu, float X, float Y)
         {
             SwinGame.ProcessEvents();
             SwinGame.DrawBitmap(menu, X, Y);

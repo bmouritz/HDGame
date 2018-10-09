@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class Collidable
+    interface IDraw
     {
-        public Collidable() { }
-
-
+        void Draw();
     }
 }

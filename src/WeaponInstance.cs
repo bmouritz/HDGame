@@ -7,35 +7,35 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class Laser : Weapon
+    public class WeaponInstance : WeaponManager, IDraw
     {
         private float _x, _y;
         private float _laserSpeed;
 
-        public Laser(float x, float y)
+        public WeaponInstance(float x, float y, string type)
         {
             _x = x;
             _y = y;
-            _laserSpeed = 30;
+            LaserSpeed1 = 30;
         }
 
-        public override void ProcessMovement()
+        public void ProcessMovement(string type)
         {
-            SwinGame.PlaySoundEffect("Laser");
             if (X < SwinGame.ScreenWidth())
             {
-                X += LaserSpeed;
-                Draw(X + 115, Y + 33);
+                X += LaserSpeed1;
+                Draw(type);
             }
         }
 
-        public override void Draw(float X, float Y)
+        public void Draw(string type)
         {
-            SwinGame.DrawBitmap("laser", X, Y);
+            SwinGame.DrawBitmap(type, X + 155, Y + 33);
+            ProcessMovement(type);
         }
 
         public float X { get => _x; set => _x = value; }
         public float Y { get => _y; set => _y = value; }
-        public float LaserSpeed { get => _laserSpeed; }
+        public float LaserSpeed1 { get => _laserSpeed; set => _laserSpeed = value; }
     }
 }

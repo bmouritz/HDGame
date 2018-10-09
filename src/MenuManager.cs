@@ -56,7 +56,7 @@ namespace MyGame.src
 
         public void MainMenu()
         {
-            menuChoice.DrawMenu("menu", X, Y);
+            menuChoice.Draw("menu", X, Y);
             if (ButtonClicked(322, 231, 610, 120))
             {
                 do
@@ -81,22 +81,22 @@ namespace MyGame.src
         {
             menuChoice.X = 217;
             menuChoice.Y = 172;
-            menuChoice.DrawMenu("howto", menuChoice.X, menuChoice.Y);
+            menuChoice.Draw("howto", menuChoice.X, menuChoice.Y);
         }
 
         public void ChooseShip()
         {
-            menuChoice.DrawMenu("chooseship", menuChoice.X, menuChoice.Y);
+            menuChoice.Draw("chooseship", menuChoice.X, menuChoice.Y);
         }
 
         public void Ship1Choice()
         {
-            menuChoice.DrawMenu("ship1", menuChoice.X, menuChoice.Y);
+            menuChoice.Draw("ship1", menuChoice.X, menuChoice.Y);
         }
 
         public void Ship2Choice()
         {
-            menuChoice.DrawMenu("ship2", menuChoice.X, menuChoice.Y);
+            menuChoice.Draw("ship2", menuChoice.X, menuChoice.Y);
         }
 
         public void LoadAssets()
@@ -105,7 +105,7 @@ namespace MyGame.src
             SwinGame.LoadBitmapNamed("howto", "menuhowto.png");
             SwinGame.LoadBitmapNamed("chooseship", "chooseship.png");
             SwinGame.LoadBitmapNamed("ship1", "shippick.png");
-            SwinGame.LoadBitmapNamed("ship2", "shippick2.png");
+            SwinGame.LoadBitmapNamed("ship2", "shippick1.png");
         }
 
         public bool Clicked { get => _clicked; set => _clicked = value; }

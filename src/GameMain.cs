@@ -10,12 +10,12 @@ namespace MyGame.src
             GameManager playing = new GameManager();
             MenuManager menu = new MenuManager();
 
-            while (menu.Running() == true)
-            {
-                SwinGame.ProcessEvents();
-                SwinGame.RefreshScreen();
-                menu.MainMenu();
-            }
+            //while (menu.Running() == true)
+            //{
+            //    SwinGame.ProcessEvents();
+            //    SwinGame.RefreshScreen();
+            //    menu.MainMenu();
+            //}
 
             while (playing.GameRunning() == true)
             {

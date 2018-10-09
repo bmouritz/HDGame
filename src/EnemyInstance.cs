@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SwinGameSDK;
 namespace MyGame.src
 {
-    public class EnemyInstance : EnemyManager
+    public class EnemyInstance : EnemyManager, IDraw
     {
         private float _x, _y;
         private float _move;
@@ -20,7 +20,7 @@ namespace MyGame.src
             _type = type;
         }
 
-        public override void MoveEnemy()
+        public void MoveEnemy()
         {
             X -= MoveE;
             Draw();
@@ -28,6 +28,7 @@ namespace MyGame.src
 
         public override void Draw()
         {
+            MoveEnemy();
             SwinGame.DrawBitmap(this.Type, X, Y);
         }
 

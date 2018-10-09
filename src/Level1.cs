@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class Level1 : Levels
+    public class Level1 : Levels, IDraw
     {
         private string _image;
         private float _x, _y;

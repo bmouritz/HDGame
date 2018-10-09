@@ -7,25 +7,25 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public abstract class EnemyManager : GameObject
+    public class EnemyManager : GameObject, IDraw
     {
         private float _x, _y;
         private float _move;
         List<EnemyInstance> _enemyList = new List<EnemyInstance>();
+        Random _random = new Random();
 
         public EnemyManager() : base(new string[] { "enemy class" })
         {
         }
 
-        public abstract void MoveEnemy();
-
         public void EnemyStart()
         {
-            _x = SwinGame.ScreenWidth() + SwinGame.Rnd(SwinGame.ScreenWidth() + 150);
-            _y = SwinGame.Rnd(SwinGame.ScreenHeight() - 100);
+            _x = (1280 + _random.Next(1280 + 150));
+            _y = _random.Next(720 - 100);
 
             _enemyList.Add(new EnemyInstance(_x, _y, 10, "enemy1"));
             _enemyList.Add(new EnemyInstance(_x, _y, 8, "enemy2"));
+            Draw();
         }
 
         public override void Draw()

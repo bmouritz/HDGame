@@ -7,21 +7,20 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class Player : GameObject
+    public class Player : GameObject, IDraw
     {
         private float _x, _y;
         private float _move;
-        private bool _laserShot;
+        private bool _hasCollided;
         GameObject ship = new GameObject(new string[] { "ship" } );
-        List<Laser> _lasers = new List<Laser>();
-        List<SpecialLaser> _specialLasers = new List<SpecialLaser>();
+        WeaponManager _weapon = new WeaponManager();
 
         public Player(string[] name) : base(new string[] { "Player" } )
         {
             _move = 10;
-            _laserShot = false;
             _x = 100;
             _y = 100;
+            _hasCollided = false;
         }
 
         public void MoveShip()
@@ -71,63 +70,24 @@ namespace MyGame.src
             }
         }
 
-        public void ShootLaser()
-        {
-            _lasers.Add(new Laser(XShip, YShip));
-        }
+        //public bool Collided()
+        //{
+        //    return false;
+        //}
 
-        public void RemoveLaser()
+        public void Shoot(string type)
         {
-            foreach (Laser laser in _lasers.ToList())
-            {
-                if (laser.X > SwinGame.ScreenWidth())
-                {
-                    _lasers.Remove(laser);
-                }
-            }
-
-            foreach (SpecialLaser slaser in _specialLasers.ToList())
-            {
-                if (slaser.X > SwinGame.ScreenWidth())
-                {
-                    _specialLasers.Remove(slaser);
-                }
-            }
-        }
-
-        public void ProcessLasers()
-        {
-            foreach (Laser laser in _lasers)
-            {
-                laser.ProcessMovement();
-            }
-            RemoveLaser();
-        }
-
-        public void ShootSpecialLaser()
-        {
-            _specialLasers.Add(new SpecialLaser(XShip, YShip));
-        }
-
-        public void ProcessSpecialLaser()
-        {
-            foreach (SpecialLaser slaser in _specialLasers)
-            {
-                slaser.ProcessMovement();
-            }
+            _weapon.ShootWeapon(type, XShip, YShip);
         }
 
         public override void Draw()
         {
             SwinGame.DrawBitmap("ship" , XShip, YShip);
-            ProcessLasers();
-            ProcessSpecialLaser();
         }
 
-        public Laser Laser { get; set; }
         public float XShip { get => _x; set => _x = value; }
         public float YShip { get => _y; set => _y = value; }
         public float Move { get => _move; set => _move = value; }
-        public bool LaserShot { get => _laserShot; set => _laserShot = value; }
+        public bool HasCollided { get => _hasCollided; set => _hasCollided = value; }
     }
 }
