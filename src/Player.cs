@@ -47,14 +47,14 @@ namespace MyGame.src
 
         public void WrapObject()
         {
-            if (this.XShip < -((SwinGame.BitmapWidth(this.Bitmap))))
+            if (XShip < -((SwinGame.BitmapWidth(Bitmap))))
             {
-                this.XShip = SwinGame.ScreenWidth();
+                XShip = SwinGame.ScreenWidth();
             }
 
             else if (this.XShip > SwinGame.ScreenWidth())
             {
-                this.XShip = -SwinGame.BitmapWidth(this.Bitmap);
+                XShip = -SwinGame.BitmapWidth(Bitmap);
             }
 
             if (this.YShip < (-(SwinGame.BitmapHeight(this.Bitmap))))
@@ -75,8 +75,10 @@ namespace MyGame.src
 
         public override void Draw()
         {
-            SwinGame.DrawBitmap("ship" , XShip, YShip);
+            Bitmap = SwinGame.BitmapNamed("ship");
+            SwinGame.DrawBitmap(this.Bitmap , XShip, YShip);
         }
+
         public float Move { get => _move; set => _move = value; }
         public float XShip { get => _xShip; set => _xShip = value; }
         public float YShip { get => _yShip; set => _yShip = value; }

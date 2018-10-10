@@ -7,24 +7,24 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class EnemyManager : GameObject, IDraw
-    {
+    public class EnemyManager
+    { 
         private float _xEnemy, _yEnemy;
         List<EnemyInstance> _enemyList = new List<EnemyInstance>();
 
-        public EnemyManager() : base(new string[] { "enemy class" })
+        public EnemyManager()
         {
-            this.X = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-            this.Y = SwinGame.Rnd(720 - 100);
+            XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+            YEnemy = SwinGame.Rnd(720 - 100);
         }
 
         public void EnemyStart()
         {
             for (int i = 0; i < 2; i++)
             {
-                EnemyList.Add(new EnemyInstance(this.X, this.Y, 10, "enemy1"));
-                EnemyList.Add(new EnemyInstance(this.X, this.Y, 8, "enemy2"));
-                EnemyList.Add(new EnemyInstance(this.X, this.Y, 12, "enemy3"));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, SwinGame.BitmapNamed("enemy1")));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 8, SwinGame.BitmapNamed("enemy2")));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 12, SwinGame.BitmapNamed("enemy3")));
             }
         }
 
@@ -40,7 +40,7 @@ namespace MyGame.src
             }
         }
 
-        public override void Draw()
+        public void Draw()
         {
             foreach (EnemyInstance e in EnemyList)
             {

@@ -50,6 +50,7 @@ namespace MyGame.src
             SwinGame.DrawText("Level: ", Color.White, 1040, 35);
             SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
 
+
             _player.Draw();
             _enemy.Draw();
         }
@@ -58,9 +59,9 @@ namespace MyGame.src
         {
             _player.MoveShip();
 
-   //         _collision.CheckCollisionEnemyPlayer(_player, _enemy);
+    //        _collision.CheckCollisionEnemyPlayer(_player, _enemy);
 
-            _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
+   //         _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {

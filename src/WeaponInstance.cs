@@ -7,15 +7,17 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class WeaponInstance : WeaponManager, IDraw
+    public class WeaponInstance
     {
         private float _x, _y;
         private float _laserSpeed;
         private string _type;
 
+        public float X { get => _x; set => _x = value; }
+
         public WeaponInstance(float x, float y, string type)
         {
-            _x = x;
+            X = x;
             _y = y;
             _laserSpeed = 30;
             _type = type;
@@ -23,17 +25,16 @@ namespace MyGame.src
 
         public void ProcessMovement(string type)
         {
-            if (this._x < SwinGame.ScreenWidth())
+            if (this.X < SwinGame.ScreenWidth())
             {
-                this._x += _laserSpeed;
+                this.X += _laserSpeed;
                 Draw(type);
             }
         }
 
         public void Draw(string type)
         {
-            SwinGame.DrawBitmap(type, this._x + 155, this._y + 33);
-            ProcessMovement(type);
+            SwinGame.DrawBitmap(type, this.X + 155, this._y + 33);
         }
     }
 }

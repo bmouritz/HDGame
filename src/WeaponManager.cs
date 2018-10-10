@@ -7,11 +7,11 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class WeaponManager : GameObject
+    public class WeaponManager
     {
         List<WeaponInstance> _weaponList = new List<WeaponInstance>();
 
-        public WeaponManager() : base(new string[] { "Weapon" }) { }
+        public WeaponManager() { }
 
         public void ShootWeapon(string type, float X, float Y)
         {

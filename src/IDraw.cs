@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyGame.src
 {
-    interface IDraw
+    public interface IDraw
     {
         void Draw();
     }
