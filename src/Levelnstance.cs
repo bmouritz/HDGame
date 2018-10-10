@@ -9,8 +9,6 @@ namespace MyGame.src
 {
     public class Levelnstance : LevelManager, IDraw
     {
-        private float _x, _y;
-
         public Levelnstance(string name) : base(new string[] { "Level 1" } )
         {
             X = Y = 0;
@@ -20,8 +18,5 @@ namespace MyGame.src
         {
             SwinGame.DrawBitmap(Image, X, Y);
         }
-
-        public float Y { get => _y; set => _y = value; }
-        public float X { get => _x; set => _x = value; }
     }
 }
