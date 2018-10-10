@@ -11,31 +11,29 @@ namespace MyGame.src
     {
         private float _x, _y;
         private float _laserSpeed;
+        private string _type;
 
         public WeaponInstance(float x, float y, string type)
         {
             _x = x;
             _y = y;
-            LaserSpeed1 = 30;
+            _laserSpeed = 30;
+            _type = type;
         }
 
         public void ProcessMovement(string type)
         {
-            if (X < SwinGame.ScreenWidth())
+            if (this._x < SwinGame.ScreenWidth())
             {
-                X += LaserSpeed1;
+                this._x += _laserSpeed;
                 Draw(type);
             }
         }
 
         public void Draw(string type)
         {
-            SwinGame.DrawBitmap(type, X + 155, Y + 33);
+            SwinGame.DrawBitmap(type, this._x + 155, this._y + 33);
             ProcessMovement(type);
         }
-
-        public float X { get => _x; set => _x = value; }
-        public float Y { get => _y; set => _y = value; }
-        public float LaserSpeed1 { get => _laserSpeed; set => _laserSpeed = value; }
     }
 }

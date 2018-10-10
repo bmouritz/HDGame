@@ -17,6 +17,8 @@ namespace MyGame.src
             //    menu.MainMenu();
             //}
 
+            playing.InitiateEnemies();
+
             while (playing.GameRunning() == true)
             {
                 playing.Update();

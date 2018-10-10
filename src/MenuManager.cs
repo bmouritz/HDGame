@@ -63,16 +63,6 @@ namespace MyGame.src
                 {
                     HowTo();
                 } while (ButtonClicked(840, 180, 180, 50) == false);
-                do
-                {
-                    ChooseShip();
-                    SwinGame.ProcessEvents();
-                    if (ButtonClicked(354, 436, 178, 50))
-                        do
-                        {
-                            Ship1Choice();
-                        } while (ButtonClicked(840, 180, 180, 50) == false);
-                } while (ButtonClicked(840, 180, 180, 50) == false);
                 Active = false;
             }
         }

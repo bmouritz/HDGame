@@ -9,17 +9,15 @@ namespace MyGame.src
 {
     public class WeaponManager : GameObject
     {
-        private float _x, _y;
-        private float _laserSpeed;
         List<WeaponInstance> _weaponList = new List<WeaponInstance>();
 
         public WeaponManager() : base(new string[] { "Weapon" }) { }
 
         public void ShootWeapon(string type, float X, float Y)
         {
-            _weaponList.Add(new WeaponInstance(X, Y, type));
-
-            foreach (WeaponInstance _weapon in _weaponList)
+            WeaponList.Add(new WeaponInstance(X, Y, type));
+            SwinGame.PlaySoundEffect("Laser");
+            foreach (WeaponInstance _weapon in WeaponList)
             {
                 _weapon.Draw(type);
             }
@@ -27,17 +25,14 @@ namespace MyGame.src
 
         public void RemoveLaser()
         {
-            foreach (WeaponInstance weapon in _weaponList.ToList())
+            foreach (WeaponInstance weapon in WeaponList.ToList())
             {
                 if (weapon.X > SwinGame.ScreenWidth())
                 {
-                    _weaponList.Remove(weapon);
+                    WeaponList.Remove(weapon);
                 }
             }
         }
-
-        public float X { get => _x; set => _x = value; }
-        public float Y { get => _y; set => _y = value; }
-        public float LaserSpeed { get => _laserSpeed; set => _laserSpeed = value; }
+        public List<WeaponInstance> WeaponList { get => _weaponList; set => _weaponList = value; }
     }
 }

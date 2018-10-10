@@ -10,7 +10,8 @@ namespace MyGame.src
         private bool _active;
         private string _shotType;
         Player _player = new Player(new string[] { "player" } );
-        EnemyManager _enemy = new EnemyManager();   
+        EnemyManager _enemy = new EnemyManager();
+        Collidable _collision = new Collidable();
 
         public GameManager()
         {
@@ -30,10 +31,16 @@ namespace MyGame.src
             return Active;
         }
 
+        public void InitiateEnemies()
+        {
+            _enemy.EnemyStart();
+        }
+
         public void Render()
         {
             SwinGame.ProcessEvents();
 
+            SwinGame.RefreshScreen();
             //Draws the background and all required information in the level.
             SwinGame.DrawBitmap("background", 0, 0);
             SwinGame.FillRectangle(Color.Black, 0, 0, 1280, 50);
@@ -41,25 +48,25 @@ namespace MyGame.src
             SwinGame.DrawText("Score: ", Color.White, 1140, 15);
             SwinGame.DrawText("Health: ", Color.White, 1140, 35);
             SwinGame.DrawText("Level: ", Color.White, 1040, 35);
-
+            SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
 
             _player.Draw();
-            _enemy.EnemyStart();
-
-            SwinGame.RefreshScreen();
+            _enemy.Draw();
         }
 
         public void Update()
         {
             _player.MoveShip();
 
+   //         _collision.CheckCollisionEnemyPlayer(_player, _enemy);
+
+            _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
+
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {
                 _shotType = "laser";
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
-                SwinGame.ClearScreen();
-                SwinGame.DrawBitmap("background", 0, 0);
             }
 
             if (SwinGame.KeyTyped(KeyCode.SKey))
@@ -67,8 +74,6 @@ namespace MyGame.src
                 _shotType = "laserSpec";
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
-                SwinGame.ClearScreen();
-                SwinGame.DrawBitmap("background", 0, 0);
             }
         }
 
@@ -85,8 +90,8 @@ namespace MyGame.src
             SwinGame.LoadBitmapNamed("enemy3", "FinalBoss.png");
 
             SwinGame.LoadMusicNamed("Limits", "Limits.wav");
-            SwinGame.LoadMusicNamed("Laser", "laser.wav");
-            SwinGame.LoadMusicNamed("Explode", "Explosion.wav");
+            SwinGame.LoadSoundEffectNamed("Laser", "laser.wav");
+            SwinGame.LoadSoundEffectNamed("Explode", "Explosion.wav");
         }
 
         public bool Active { get => _active; set => _active = value; }

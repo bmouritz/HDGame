@@ -7,12 +7,12 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public abstract class Levels : IDraw
+    public abstract class LevelManager : IDraw
     {
         private Bitmap _image;
         private int _x, _y;
 
-        public Levels(string[] name) { }
+        public LevelManager(string[] name) { }
 
         public abstract void Draw();
 

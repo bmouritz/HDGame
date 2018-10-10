@@ -22,19 +22,13 @@ namespace MyGame.src
 
         public void MoveEnemy()
         {
-            X -= MoveE;
-            Draw();
+            X -= _move;
         }
 
         public override void Draw()
         {
             MoveEnemy();
-            SwinGame.DrawBitmap(this.Type, X, Y);
+            SwinGame.DrawBitmap(this._type, X, Y);
         }
-
-        public float MoveE { get => _move; set => _move = value; }
-        public float X { get => _x; set => _x = value; }
-        public float Y { get => _y; set => _y = value; }
-        public string Type { get => _type; set => _type = value; }
     }
 }

@@ -9,18 +9,16 @@ namespace MyGame.src
 {
     public class Player : GameObject, IDraw
     {
-        private float _x, _y;
+        private float _xShip, _yShip;
         private float _move;
-        private bool _hasCollided;
         GameObject ship = new GameObject(new string[] { "ship" } );
         WeaponManager _weapon = new WeaponManager();
 
         public Player(string[] name) : base(new string[] { "Player" } )
         {
             _move = 10;
-            _x = 100;
-            _y = 100;
-            _hasCollided = false;
+            XShip = 100;
+            YShip = 100;
         }
 
         public void MoveShip()
@@ -70,24 +68,18 @@ namespace MyGame.src
             }
         }
 
-        //public bool Collided()
-        //{
-        //    return false;
-        //}
-
         public void Shoot(string type)
         {
-            _weapon.ShootWeapon(type, XShip, YShip);
+            Weapon.ShootWeapon(type, XShip, YShip);
         }
 
         public override void Draw()
         {
             SwinGame.DrawBitmap("ship" , XShip, YShip);
         }
-
-        public float XShip { get => _x; set => _x = value; }
-        public float YShip { get => _y; set => _y = value; }
         public float Move { get => _move; set => _move = value; }
-        public bool HasCollided { get => _hasCollided; set => _hasCollided = value; }
+        public float XShip { get => _xShip; set => _xShip = value; }
+        public float YShip { get => _yShip; set => _yShip = value; }
+        public WeaponManager Weapon { get => _weapon; set => _weapon = value; }
     }
 }

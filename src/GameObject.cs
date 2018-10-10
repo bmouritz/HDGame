@@ -26,9 +26,11 @@ namespace MyGame.src
 
         public virtual void Draw()
         {
-            SwinGame.DrawBitmap(_bitmap, _x, _y);
+            SwinGame.DrawBitmap(_bitmap, X, Y);
         }
 
         public Bitmap Bitmap { get => _bitmap; set => _bitmap = value; }
+        public float X { get => _x; set => _x = value; }
+        public float Y { get => _y; set => _y = value; }
     }
 }
