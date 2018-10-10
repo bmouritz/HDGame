@@ -18,7 +18,7 @@ namespace MyGame.src
 
         public bool WeaponHitEnemy(WeaponInstance w, EnemyInstance e)
         {
-            return SwinGame.BitmapCollision(e.Type, e.X, e.Y, w.Type, w.X, w.Y);
+            return SwinGame.BitmapCollision(w.Type, w.X, w.Y, e.Type, e.X, e.Y);
         }
 
         public void CheckCollisionEnemyPlayer(Player p, EnemyManager e)
