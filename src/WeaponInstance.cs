@@ -13,10 +13,6 @@ namespace MyGame.src
         private float _laserSpeed;
         private Bitmap _type;
 
-        public float X { get => _x; set => _x = value; }
-        public float Y { get => _y; set => _y = value; }
-        public Bitmap Type { get => _type; set => _type = value; }
-
         public WeaponInstance(float x, float y, Bitmap type)
         {
             X = x;
@@ -27,17 +23,17 @@ namespace MyGame.src
 
         public void ProcessMovement()
         {
-            if (this.X < SwinGame.ScreenWidth())
-            {
-                this.X += _laserSpeed;
-                Draw();
-            }
+            X += _laserSpeed;
         }
 
         public void Draw()
         {
-            SwinGame.DrawBitmap(Type, this.X + 155, this.Y + 33);
             ProcessMovement();
+            SwinGame.DrawBitmap(Type, X + 155, Y + 33);
         }
+
+        public float X { get => _x; set => _x = value; }
+        public float Y { get => _y; set => _y = value; }
+        public Bitmap Type { get => _type; set => _type = value; }
     }
 }

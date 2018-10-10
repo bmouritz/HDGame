@@ -17,13 +17,9 @@ namespace MyGame.src
         {
             WeaponList.Add(new WeaponInstance(X, Y, type));
             SwinGame.PlaySoundEffect("Laser");
-            foreach (WeaponInstance _weapon in WeaponList)
-            {
-                _weapon.Draw();
-            }
         }
 
-        public void RemoveLaser()
+        public void RemoveLaserIfOffScreen()
         {
             foreach (WeaponInstance weapon in WeaponList.ToList())
             {
@@ -32,6 +28,20 @@ namespace MyGame.src
                     WeaponList.Remove(weapon);
                 }
             }
+        }
+
+        public void RemoveLaserCollision(WeaponInstance bullet)
+        {
+            _weaponList.Remove(bullet);
+        }
+
+        public void Draw()
+        {
+            foreach (WeaponInstance _weapon in WeaponList)
+            {
+                _weapon.Draw();
+            }
+            RemoveLaserIfOffScreen();
         }
 
         public List<WeaponInstance> WeaponList { get => _weaponList; set => _weaponList = value; }

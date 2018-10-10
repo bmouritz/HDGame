@@ -9,14 +9,16 @@ namespace MyGame.src
 {
     public class Collidable
     {
+        private Bitmap temp;
+
         public bool EnemyHitShip(Player p, EnemyInstance e)
         {
-            return SwinGame.BitmapCollision(e.Type, e.X, e.X, p.Type, p.XShip, p.YShip);
+            return SwinGame.BitmapCollision(e.Type, e.X, e.Y, p.Type, p.XShip, p.YShip);
         }
 
         public bool WeaponHitEnemy(WeaponInstance w, EnemyInstance e)
         {
-            return SwinGame.BitmapCollision(e.Type, e.X, e.X, w.Type, w.X, w.Y);
+            return SwinGame.BitmapCollision(e.Type, e.X, e.Y, w.Type, w.X, w.Y);
         }
 
         public void CheckCollisionEnemyPlayer(Player p, EnemyManager e)
@@ -29,6 +31,8 @@ namespace MyGame.src
                 {
                     SwinGame.PlaySoundEffect("Explode");
                     enemies.Remove(enemy);
+                    temp = enemy.Type;
+                    e.AddEnemyIfRemoved(temp);
                 }
             }
         }
@@ -38,13 +42,20 @@ namespace MyGame.src
             List<WeaponInstance> weapons = w.WeaponList;
             List<EnemyInstance> enemies = e.EnemyList;
 
-            foreach (WeaponInstance shot in weapons)
+            foreach (WeaponInstance shot in weapons.ToList())
             {
-                foreach (EnemyInstance enemy in enemies)
+                foreach (EnemyInstance enemy in enemies.ToList())
                 {
                     if (WeaponHitEnemy(shot, enemy))
                     {
                         SwinGame.PlaySoundEffect("Explode");
+                        if (shot.Type == SwinGame.BitmapNamed("laser"))
+                        {
+                            w.RemoveLaserCollision(shot);
+                        }
+                        enemies.Remove(enemy);
+                        temp = enemy.Type;
+                        e.AddEnemyIfRemoved(temp);
                     }
                 }
             }

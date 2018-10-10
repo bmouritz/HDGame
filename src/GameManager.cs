@@ -52,6 +52,7 @@ namespace MyGame.src
 
 
             _player.Draw();
+            _player.Weapon.Draw();
             _enemy.Draw();
         }
 
@@ -61,7 +62,7 @@ namespace MyGame.src
 
             _collision.CheckCollisionEnemyPlayer(_player, _enemy);
 
-   //         _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
+            _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {

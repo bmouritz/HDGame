@@ -40,6 +40,14 @@ namespace MyGame.src
             }
         }
 
+        public void AddEnemyIfRemoved(Bitmap DestroyedEnemy)
+        {
+            XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+            YEnemy = SwinGame.Rnd(720 - 100);
+
+            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, DestroyedEnemy));
+        }
+
         public void Draw()
         {
             foreach (EnemyInstance e in EnemyList)
