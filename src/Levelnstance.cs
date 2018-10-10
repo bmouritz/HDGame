@@ -9,6 +9,7 @@ namespace MyGame.src
 {
     public class Levelnstance : LevelManager, IDraw
     {
+        
         public Levelnstance(string name) : base(new string[] { "Level 1" } )
         {
             X = Y = 0;
