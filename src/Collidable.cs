@@ -23,11 +23,12 @@ namespace MyGame.src
         {
             List<EnemyInstance> enemies = e.EnemyList;
 
-            foreach (EnemyInstance enemy in enemies)
+            foreach (EnemyInstance enemy in enemies.ToList())
             {
                 if (EnemyHitShip(p, enemy))
                 {
                     SwinGame.PlaySoundEffect("Explode");
+                    enemies.Remove(enemy);
                 }
             }
         }
