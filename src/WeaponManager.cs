@@ -13,13 +13,13 @@ namespace MyGame.src
 
         public WeaponManager() { }
 
-        public void ShootWeapon(string type, float X, float Y)
+        public void ShootWeapon(Bitmap type, float X, float Y)
         {
             WeaponList.Add(new WeaponInstance(X, Y, type));
             SwinGame.PlaySoundEffect("Laser");
             foreach (WeaponInstance _weapon in WeaponList)
             {
-                _weapon.Draw(type);
+                _weapon.Draw();
             }
         }
 
@@ -33,6 +33,7 @@ namespace MyGame.src
                 }
             }
         }
+
         public List<WeaponInstance> WeaponList { get => _weaponList; set => _weaponList = value; }
     }
 }

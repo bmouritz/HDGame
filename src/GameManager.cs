@@ -8,7 +8,7 @@ namespace MyGame.src
     public class GameManager
     {
         private bool _active;
-        private string _shotType;
+        private Bitmap _shotType;
         Player _player = new Player(new string[] { "player" } );
         EnemyManager _enemy = new EnemyManager();
         Collidable _collision = new Collidable();
@@ -59,20 +59,20 @@ namespace MyGame.src
         {
             _player.MoveShip();
 
-    //        _collision.CheckCollisionEnemyPlayer(_player, _enemy);
+            _collision.CheckCollisionEnemyPlayer(_player, _enemy);
 
    //         _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {
-                _shotType = "laser";
+                _shotType = SwinGame.BitmapNamed("laser");
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
             }
 
             if (SwinGame.KeyTyped(KeyCode.SKey))
             {
-                _shotType = "laserSpec";
+                _shotType = SwinGame.BitmapNamed("laserSpec");
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
             }
@@ -93,6 +93,8 @@ namespace MyGame.src
             SwinGame.LoadMusicNamed("Limits", "Limits.wav");
             SwinGame.LoadSoundEffectNamed("Laser", "laser.wav");
             SwinGame.LoadSoundEffectNamed("Explode", "Explosion.wav");
+
+            _player.Type = SwinGame.BitmapNamed("ship");
         }
 
         public bool Active { get => _active; set => _active = value; }

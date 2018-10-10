@@ -11,6 +11,7 @@ namespace MyGame.src
     {
         private float _xShip, _yShip;
         private float _move;
+        private Bitmap _type;
         GameObject ship = new GameObject(new string[] { "ship" } );
         WeaponManager _weapon = new WeaponManager();
 
@@ -68,20 +69,20 @@ namespace MyGame.src
             }
         }
 
-        public void Shoot(string type)
+        public void Shoot(Bitmap type)
         {
             Weapon.ShootWeapon(type, XShip, YShip);
         }
 
         public override void Draw()
         {
-            Bitmap = SwinGame.BitmapNamed("ship");
-            SwinGame.DrawBitmap(this.Bitmap , XShip, YShip);
+            SwinGame.DrawBitmap(this.Type , XShip, YShip);
         }
 
         public float Move { get => _move; set => _move = value; }
         public float XShip { get => _xShip; set => _xShip = value; }
         public float YShip { get => _yShip; set => _yShip = value; }
         public WeaponManager Weapon { get => _weapon; set => _weapon = value; }
+        public Bitmap Type { get => _type; set => _type = value; }
     }
 }
