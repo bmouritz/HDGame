@@ -7,18 +7,18 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class EnemySlow : IEnemy
+    public class EnemyMedium : IEnemy
     {
         private float _x, _y;
         private float _speed;
         private Bitmap _type;
 
-        public EnemySlow(float x, float y)
+        public EnemyMedium(float x, float y)
         {
             X = x;
             Y = y;
-            _speed = 10;
-            Type = SwinGame.BitmapNamed("enemy1");
+            _speed = 8;
+            Type = SwinGame.BitmapNamed("enemy2");
         }
 
         public void Move()

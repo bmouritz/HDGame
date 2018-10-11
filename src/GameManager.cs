@@ -19,7 +19,7 @@ namespace MyGame.src
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
             SwinGame.PlayMusic("Limits");
-            GameData.Score = 0;
+      //      GameData.Score = 0;
             Active = true;
         }
 
@@ -40,12 +40,14 @@ namespace MyGame.src
         public void Render()
         {
             SwinGame.ProcessEvents();
-            DrawGameDetails();
-            SwinGame.RefreshScreen();
+
+            DrawGameDetails();           
 
             _player.Draw();
             _player.Weapon.Draw();
             _enemy.Draw();
+
+            SwinGame.RefreshScreen();
         }
 
         public void Update()

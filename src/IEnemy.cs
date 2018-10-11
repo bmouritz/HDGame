@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SwinGameSDK;
 
 namespace MyGame.src
 {
-    class IEnemy
+    public interface IEnemy
     {
+        void Draw();
     }
 }
