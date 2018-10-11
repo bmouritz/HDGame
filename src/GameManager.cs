@@ -19,6 +19,7 @@ namespace MyGame.src
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
             SwinGame.PlayMusic("Limits");
+            GameData.Score = 0;
             Active = true;
         }
 
@@ -39,17 +40,8 @@ namespace MyGame.src
         public void Render()
         {
             SwinGame.ProcessEvents();
-
+            DrawGameDetails();
             SwinGame.RefreshScreen();
-            //Draws the background and all required information in the level.
-            SwinGame.DrawBitmap("background", 0, 0);
-            SwinGame.FillRectangle(Color.Black, 0, 0, 1280, 50);
-            SwinGame.DrawBitmap("spacewars", 0, 0);
-            SwinGame.DrawText("Score: ", Color.White, 1140, 15);
-            SwinGame.DrawText("Health: ", Color.White, 1140, 35);
-            SwinGame.DrawText("Level: ", Color.White, 1040, 35);
-            SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
-
 
             _player.Draw();
             _player.Weapon.Draw();
@@ -61,7 +53,6 @@ namespace MyGame.src
             _player.MoveShip();
 
             _collision.CheckCollisionEnemyPlayer(_player, _enemy);
-
             _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
@@ -77,6 +68,19 @@ namespace MyGame.src
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
             }
+        }
+
+        //Draws the background and all required information in the level.
+        public void DrawGameDetails()
+        {
+            SwinGame.DrawBitmap("background", 0, 0);
+            SwinGame.FillRectangle(Color.Black, 0, 0, 1280, 50);
+            SwinGame.DrawBitmap("spacewars", 0, 0);
+            SwinGame.DrawText("Score: ", Color.White, 1140, 15);
+            SwinGame.DrawText("Health: ", Color.White, 1140, 35);
+            SwinGame.DrawText("Level: ", Color.White, 1040, 35);
+            SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
+        //    SwinGame.DrawText((GameData.Score.ToString()), Color.White, 1200, 15);
         }
 
 

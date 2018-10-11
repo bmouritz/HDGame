@@ -13,7 +13,6 @@ namespace MyGame.src
 
         private GameData()
         {
-            _score = 0;
         }
 
         public static GameData Instance
@@ -23,27 +22,6 @@ namespace MyGame.src
             }
         }
 
-        public static int Score
-        {
-            get
-            {
-                return instance._score;
-            }
-
-            set
-            {
-                instance._score = value;
-            }
-        }
-
-        private void AddToScore(int AddScore)
-        {
-            instance._score += AddScore;
-        }
-
-        private void DecreaseScore(int AddScore)
-        {
-            instance._score -= AddScore;
-        }
+        public static int Score { get => instance._score; set => instance._score = value; }
     }
 }
