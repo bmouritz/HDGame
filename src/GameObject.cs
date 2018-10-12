@@ -10,26 +10,26 @@ namespace MyGame.src
     public class GameObject : IDraw
     {
         private float _x, _y;
-        private Bitmap _bitmap;
+        private Bitmap _type;
 
         public GameObject(string[] name) {}
 
         public float ChangeX(float X)
         {
-            return X = X++;
+            return Y = X++;
         }
 
         public float ChangeY(float y)
         {
-            return y = y++;
+            return Y = y++;
         }
 
         public virtual void Draw()
         {
-            SwinGame.DrawBitmap(_bitmap, X, Y);
+            SwinGame.DrawBitmap(Type, X, Y);
         }
 
-        public Bitmap Bitmap { get => _bitmap; set => _bitmap = value; }
+        public Bitmap Type { get => _type; set => _type = value; }
         public float X { get => _x; set => _x = value; }
         public float Y { get => _y; set => _y = value; }
     }

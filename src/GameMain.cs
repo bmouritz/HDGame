@@ -9,13 +9,14 @@ namespace MyGame.src
         {
             GameManager playing = new GameManager();
             MenuManager menu = new MenuManager();
+            SwinGame.PlayMusic("Limits");
 
-            //while (menu.Running() == true)
-            //{
-            //    SwinGame.ProcessEvents();
-            //    SwinGame.RefreshScreen();
-            //    menu.MainMenu();
-            //}
+            while (menu.Running() == true)
+            {
+                SwinGame.ProcessEvents();
+                SwinGame.RefreshScreen();
+                menu.MainMenu();
+            }
 
             playing.InitiateEnemies();
 

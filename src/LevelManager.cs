@@ -7,17 +7,17 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public abstract class LevelManager : IDraw
+    public class LevelManager
     {
         private int _x, _y;
-        private Bitmap _image;
+        private Bitmap _type;
 
-        public LevelManager(string[] name) { }
+        public LevelManager() { }
+
+        public void Draw() { }
 
         public int X { get => _x; set => _x = value; }
         public int Y { get => _y; set => _y = value; }
-        public Bitmap Image { get => _image; set => _image = value; }
-
-        public abstract void Draw();
+        public Bitmap Type { get => _type; set => _type = value; }
     }
 }

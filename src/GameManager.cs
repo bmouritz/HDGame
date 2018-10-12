@@ -10,7 +10,6 @@ namespace MyGame.src
         private bool _active;
         private Bitmap _shotType;
         Player _player = new Player(new string[] { "player" } );
-        EnemyFactory _enemies;
         EnemyManager _enemyManager;
         Collidable _collision = new Collidable();
 
@@ -20,7 +19,6 @@ namespace MyGame.src
             LoadResources();
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
-            SwinGame.PlayMusic("Limits");
             Active = true;
         }
 
@@ -46,6 +44,7 @@ namespace MyGame.src
 
             _player.Draw();
             _player.Weapon.Draw();
+            _enemyManager.Draw();
 
             SwinGame.RefreshScreen();
         }
@@ -54,8 +53,8 @@ namespace MyGame.src
         {
             _player.MoveShip();
 
-      //      _collision.CheckCollisionEnemyPlayer(_player, _enemies);
-        //    _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemies);
+            _collision.CheckCollisionEnemyPlayer(_player, _enemyManager);
+            _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemyManager);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {
@@ -80,7 +79,7 @@ namespace MyGame.src
                 }
             }
 
-            if (SwinGame.KeyTyped(KeyCode.RKey) && _player.Weapon.Shots == 0)
+            if (SwinGame.KeyTyped(KeyCode.RKey) && _player.Weapon.Shots <= 5)
             {
                 _player.Weapon.ReloadLaser();
             }
@@ -132,6 +131,8 @@ namespace MyGame.src
             SwinGame.LoadMusicNamed("Limits", "Limits.wav");
             SwinGame.LoadSoundEffectNamed("Laser", "laser.wav");
             SwinGame.LoadSoundEffectNamed("Explode", "Explosion.wav");
+            SwinGame.LoadSoundEffectNamed("Reload", "reload.wav");
+            SwinGame.LoadSoundEffectNamed("Ammo", "Ammo.wav");
 
             _player.Type = SwinGame.BitmapNamed("ship");
         }

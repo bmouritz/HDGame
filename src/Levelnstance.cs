@@ -7,17 +7,23 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class Levelnstance : LevelManager, IDraw
+    public class Levelnstance : IDraw
     {
-        
-        public Levelnstance(string name) : base(new string[] { "Level 1" } )
+        private int _x, _y;
+        private Bitmap _type;
+
+        public Levelnstance()
         {
             X = Y = 0;
         }
 
-        public override void Draw()
+        public Bitmap Type { get => _type; set => _type = value; }
+        public int X { get => _x; set => _x = value; }
+        public int Y { get => _y; set => _y = value; }
+
+        public void Draw()
         {
-            SwinGame.DrawBitmap(Image, X, Y);
+            SwinGame.DrawBitmap(Type, X, Y);
         }
     }
 }
