@@ -11,11 +11,13 @@ namespace MyGame.src
     { 
         private float _xEnemy, _yEnemy;
         private Player _player;
+        EnemyFactory _enemyFactory;
         List<IEnemy> _enemyList = new List<IEnemy>();
 
         public EnemyManager(Player player)
         {
             _player = player;
+            _enemyFactory = new EnemyFactory(XEnemy, XEnemy, _player);
         }
 
         public void EnemyStart()
@@ -23,9 +25,9 @@ namespace MyGame.src
             for (int i = 0; i < 2; i++)
             {
                 SetRandomXY();
-                _enemyList.Add(new EnemySlow(XEnemy, YEnemy, _player));
-                _enemyList.Add(new EnemyMedium(XEnemy, YEnemy));
-                _enemyList.Add(new EnemyFast(XEnemy, YEnemy));
+                EnemyList.Add(_enemyFactory.GetSlowEnemy());
+                EnemyList.Add(_enemyFactory.GetMediumEnemy());
+                EnemyList.Add(_enemyFactory.GetFastEnemy());
             }
         }
 
@@ -46,17 +48,17 @@ namespace MyGame.src
             SetRandomXY();
             if (DestroyedEnemy == SwinGame.BitmapNamed("enemy1"))
             {
-                EnemyList.Add(new EnemySlow(XEnemy, YEnemy, _player));
+                EnemyList.Add(_enemyFactory.GetSlowEnemy());
             }
 
             else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy2"))
             {
-                EnemyList.Add(new EnemyMedium(XEnemy, YEnemy));
+                EnemyList.Add(_enemyFactory.GetMediumEnemy());
             }
 
             else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy3"))
             {
-                EnemyList.Add(new EnemyFast(XEnemy, YEnemy));
+                EnemyList.Add(_enemyFactory.GetFastEnemy());
             }
         }
 
