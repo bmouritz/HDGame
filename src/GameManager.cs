@@ -10,12 +10,13 @@ namespace MyGame.src
         private bool _active;
         private Bitmap _shotType;
         Player _player = new Player(new string[] { "player" } );
-        EnemyManager _enemy;
+        EnemyFactory _enemies;
+        EnemyManager _enemyManager;
         Collidable _collision = new Collidable();
 
         public GameManager()
         {
-            _enemy = new EnemyManager(_player);
+            _enemyManager = new EnemyManager(_player);
             LoadResources();
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
@@ -34,7 +35,7 @@ namespace MyGame.src
 
         public void InitiateEnemies()
         {
-            _enemy.EnemyStart();
+            _enemyManager.EnemyStart();
         }
 
         public void Render()
@@ -45,7 +46,6 @@ namespace MyGame.src
 
             _player.Draw();
             _player.Weapon.Draw();
-            _enemy.Draw();
 
             SwinGame.RefreshScreen();
         }
@@ -54,14 +54,18 @@ namespace MyGame.src
         {
             _player.MoveShip();
 
-            _collision.CheckCollisionEnemyPlayer(_player, _enemy);
-            _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemy);
+      //      _collision.CheckCollisionEnemyPlayer(_player, _enemies);
+        //    _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemies);
 
             if (SwinGame.KeyTyped(KeyCode.SpaceKey))
             {
                 _shotType = SwinGame.BitmapNamed("laser");
                 _player.Shoot(_shotType);
                 SwinGame.RefreshScreen();
+                if (_player.Weapon.Shots > 0)
+                {
+                    _player.Weapon.Shots -= 1;
+                }
             }
 
             if (GameData.Instance.Score >= 7)
@@ -75,6 +79,11 @@ namespace MyGame.src
                     SwinGame.RefreshScreen();
                 }
             }
+
+            if (SwinGame.KeyTyped(KeyCode.RKey) && _player.Weapon.Shots == 0)
+            {
+                _player.Weapon.ReloadLaser();
+            }
         }
 
         //Draws the background and all required information in the level.
@@ -84,8 +93,18 @@ namespace MyGame.src
             SwinGame.FillRectangle(Color.Black, 0, 0, 1280, 50);
             SwinGame.DrawBitmap("spacewars", 0, 0);
             SwinGame.DrawText("Score: ", Color.White, 1140, 15);
+            SwinGame.DrawText((GameData.Instance.Score.ToString()), Color.White, 1200, 15);
             SwinGame.DrawText("Health: ", Color.White, 1140, 35);
+            SwinGame.DrawText(GameData.Instance.PlayerHealth.ToString(), Color.White, 1200, 35);
             SwinGame.DrawText("Level: ", Color.White, 1040, 35);
+            SwinGame.DrawText(GameData.Instance.CurrentLevel.ToString(), Color.White, 1100, 35);
+            SwinGame.DrawText("Shots: ", Color.White, 1040, 15);
+            SwinGame.DrawText(_player.Weapon.Shots.ToString(), Color.White, 1100, 15);
+
+            if(_player.Weapon.Shots <= 0)
+            {
+                SwinGame.DrawText("PRESS R KEY TO RELOAD LASER!", Color.Red, 500, 15);
+            }
 
             if (GameData.Instance.Score >= 7)
             {
@@ -96,8 +115,6 @@ namespace MyGame.src
             {
                 SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
             }
-
-            SwinGame.DrawText((GameData.Instance.Score.ToString()), Color.White, 1200, 15);
         }
 
 
