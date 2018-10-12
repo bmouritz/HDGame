@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class WeaponInstance
+    public class WeaponInstance : IDraw
     {
         private float _x, _y;
         private float _laserSpeed;

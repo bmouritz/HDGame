@@ -24,6 +24,11 @@ namespace MyGame.src
                 WeaponList.Add(new WeaponInstance(X, Y, type));
                 SwinGame.PlaySoundEffect("Laser");
             }
+
+            if(Shots <= 0)
+            {
+                SwinGame.PlaySoundEffect("Reload");
+            }
         }
 
         public void RemoveLaserIfOffScreen()
@@ -54,6 +59,7 @@ namespace MyGame.src
         public void ReloadLaser()
         {
             _shots = 15;
+            SwinGame.PlaySoundEffect("Ammo");
         }
 
         public List<WeaponInstance> WeaponList { get => _weaponList; set => _weaponList = value; }
