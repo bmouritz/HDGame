@@ -21,7 +21,7 @@ namespace MyGame.src
             return SwinGame.BitmapCollision(w.Type, w.X, w.Y, e.Type, e.X, e.Y);
         }
 
-        public void CheckCollisionEnemyPlayer(Player p, EnemyFactory e)
+        public void CheckCollisionEnemyPlayer(Player p, EnemyManager e)
         {
             List<IEnemy> enemies = e.EnemyList;
 
@@ -39,7 +39,7 @@ namespace MyGame.src
             }
         }
 
-        public void CheckCollisionWeaponEnemy(WeaponManager w, EnemyFactory e)
+        public void CheckCollisionWeaponEnemy(WeaponManager w, EnemyManager e)
         {
             List<WeaponInstance> weapons = w.WeaponList;
             List<IEnemy> enemies = e.EnemyList;
