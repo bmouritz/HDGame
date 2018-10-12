@@ -24,12 +24,20 @@ namespace MyGame.src
 
         public void MoveEnemy()
         {
-            _x -= _move * 1.4f;
-            Vector location = new Vector() { X = _x, Y = _y };
-            Vector playerPos = new Vector() { X = _player.XShip, Y = _player.YShip };
-            Vector velocity = playerPos.SubtractVector(location).UnitVector.Multiply(_move);
-            _x += velocity.X;
-            _y += velocity.Y;
+            if (Type == SwinGame.BitmapNamed("enemy1"))
+            {
+                
+                Vector location = new Vector() { X = _x, Y = _y };
+                Vector playerPos = new Vector() { X = _player.XShip, Y = _player.YShip };
+                Vector velocity = playerPos.SubtractVector(location).UnitVector.Multiply(_move);
+                _x += velocity.X;
+                _y += velocity.Y;
+                _x -= _move * 1.4f;
+            }
+            else
+            {
+                X -= _move;
+            }
         }
 
         public void Draw()

@@ -9,7 +9,7 @@ namespace MyGame.src
 {
     public class Collidable
     {
-        private Bitmap temp;
+        private Bitmap _temp;
 
         public bool EnemyHitShip(Player p, EnemyInstance e)
         {
@@ -31,8 +31,10 @@ namespace MyGame.src
                 {
                     SwinGame.PlaySoundEffect("Explode");
                     enemies.Remove(enemy);
-                    temp = enemy.Type;
-                    e.AddEnemyIfRemoved(temp);
+                    GameData.Instance.Score -= 3;
+                    GameData.Instance.PlayerHealth -= 10;
+                    _temp = enemy.Type;
+                    e.AddEnemyIfRemoved(_temp);
                 }
             }
         }
@@ -54,8 +56,9 @@ namespace MyGame.src
                             w.RemoveLaserCollision(shot);
                         }
                         enemies.Remove(enemy);
-                        temp = enemy.Type;
-                        e.AddEnemyIfRemoved(temp);
+                        GameData.Instance.Score += 1;
+                        _temp = enemy.Type;
+                        e.AddEnemyIfRemoved(_temp);
                     }
                 }
             }

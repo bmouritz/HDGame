@@ -20,7 +20,6 @@ namespace MyGame.src
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
             SwinGame.PlayMusic("Limits");
-            GameData.Instance.Score = 0;
             Active = true;
         }
 
@@ -65,11 +64,16 @@ namespace MyGame.src
                 SwinGame.RefreshScreen();
             }
 
-            if (SwinGame.KeyTyped(KeyCode.SKey))
+            if (GameData.Instance.Score >= 7)
             {
-                _shotType = SwinGame.BitmapNamed("laserSpec");
-                _player.Shoot(_shotType);
-                SwinGame.RefreshScreen();
+
+                if (SwinGame.KeyTyped(KeyCode.SKey))
+                {
+                    _shotType = SwinGame.BitmapNamed("laserSpec");
+                    _player.Shoot(_shotType);
+                    GameData.Instance.Score -= 2;
+                    SwinGame.RefreshScreen();
+                }
             }
         }
 
@@ -82,8 +86,18 @@ namespace MyGame.src
             SwinGame.DrawText("Score: ", Color.White, 1140, 15);
             SwinGame.DrawText("Health: ", Color.White, 1140, 35);
             SwinGame.DrawText("Level: ", Color.White, 1040, 35);
-            SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
-        //    SwinGame.DrawText((GameData.Score.ToString()), Color.White, 1200, 15);
+
+            if (GameData.Instance.Score >= 7)
+            {
+                SwinGame.DrawText("SPECIAL WEAPON READY TO DEPLOY", Color.Red, 500, 35);
+            }
+
+            else
+            {
+                SwinGame.DrawText("SPECIAL WEAPON CHARGING...", Color.Red, 500, 35);
+            }
+
+            SwinGame.DrawText((GameData.Instance.Score.ToString()), Color.White, 1200, 15);
         }
 
 
