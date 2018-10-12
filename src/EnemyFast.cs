@@ -12,18 +12,25 @@ namespace MyGame.src
         private float _x, _y;
         private float _speed;
         private Bitmap _type;
+        Player _player;
 
-        public EnemyFast(float x, float y)
+        public EnemyFast(float x, float y, Player player)
         {
             X = x;
             Y = y;
+            _player = player;
             _speed = 12;
             Type = SwinGame.BitmapNamed("enemy3");
         }
 
         public void Move()
         {
-            X -= _speed;
+            Vector location = new Vector() { X = _x, Y = _y };
+            Vector playerPos = new Vector() { X = _player.XShip, Y = _player.YShip };
+            Vector velocity = playerPos.SubtractVector(location).UnitVector.Multiply(_speed);
+            _x += velocity.X;
+            _y += velocity.Y;
+            _x -= _speed * 1.4f;
         }
 
         public void Draw()

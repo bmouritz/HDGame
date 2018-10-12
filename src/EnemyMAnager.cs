@@ -18,7 +18,7 @@ namespace MyGame.src
             XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
             YEnemy = SwinGame.Rnd(720 - 100);
             _player = player;
-            enemyFactory = new EnemyFactory(XEnemy, YEnemy);
+            enemyFactory = new EnemyFactory(XEnemy, YEnemy, _player);
     }
 
         public void EnemyStart()

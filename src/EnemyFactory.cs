@@ -12,11 +12,13 @@ namespace MyGame.src
         private float _xEnemy, _yEnemy;
         private Bitmap _type;
         List<IEnemy> _enemyList = new List<IEnemy>();
+        Player _player;
 
-        public EnemyFactory(float X, float Y)
+        public EnemyFactory(float X, float Y, Player player)
         {
             XEnemy = X;
             YEnemy = Y;
+            _player = player;
         }
 
         public IEnemy GetSlowEnemy()
@@ -36,8 +38,8 @@ namespace MyGame.src
         public IEnemy GetFastEnemy()
         {
             Type = SwinGame.BitmapNamed("enemy3");
-            EnemyList.Add(new EnemyFast(XEnemy, YEnemy));
-            return new EnemyFast(XEnemy, YEnemy);
+            EnemyList.Add(new EnemyFast(XEnemy, YEnemy, _player));
+            return new EnemyFast(XEnemy, YEnemy, _player);
         }
 
         public void AddEnemyIfRemoved(Bitmap DestroyedEnemy)
@@ -54,7 +56,7 @@ namespace MyGame.src
 
             else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy3"))
             {
-                EnemyList.Add(new EnemyFast(XEnemy, YEnemy));
+                EnemyList.Add(new EnemyFast(XEnemy, YEnemy, _player));
             }
         }
 
