@@ -12,20 +12,22 @@ namespace MyGame.src
         private float _xEnemy, _yEnemy;
         List<EnemyInstance> _enemyList = new List<EnemyInstance>();
         private float _speed;
+        private Player _player;
 
-        public EnemyManager()
+        public EnemyManager(Player player)
         {
             XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
             YEnemy = SwinGame.Rnd(720 - 100);
+            _player = player;
         }
 
         public void EnemyStart()
         {
             for (int i = 0; i < 2; i++)
             {
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, SwinGame.BitmapNamed("enemy1")));
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 8, SwinGame.BitmapNamed("enemy2")));
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 12, SwinGame.BitmapNamed("enemy3")));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, SwinGame.BitmapNamed("enemy1"), _player));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 8, SwinGame.BitmapNamed("enemy2"), _player));
+                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 12, SwinGame.BitmapNamed("enemy3"), _player));
             }
         }
 
@@ -62,7 +64,7 @@ namespace MyGame.src
             }
 
 
-            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, _speed, DestroyedEnemy));
+            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, _speed, DestroyedEnemy, _player));
         }
 
         public void Draw()

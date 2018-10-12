@@ -10,16 +10,17 @@ namespace MyGame.src
         private bool _active;
         private Bitmap _shotType;
         Player _player = new Player(new string[] { "player" } );
-        EnemyManager _enemy = new EnemyManager();
+        EnemyManager _enemy;
         Collidable _collision = new Collidable();
 
         public GameManager()
         {
+            _enemy = new EnemyManager(_player);
             LoadResources();
             SwinGame.OpenGraphicsWindow("Space Wars", 1280, 720);
             SwinGame.DrawBitmap("background", 0, 0);
             SwinGame.PlayMusic("Limits");
-      //      GameData.Score = 0;
+            GameData.Instance.Score = 0;
             Active = true;
         }
 

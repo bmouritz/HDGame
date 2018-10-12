@@ -11,9 +11,11 @@ namespace MyGame.src
         private float _x, _y;
         private float _move;
         private Bitmap _type;
+        private Player _player;
 
-        public EnemyInstance(float x, float y, float move, Bitmap type)
+        public EnemyInstance(float x, float y, float move, Bitmap type, Player player)
         {
+            _player = player;
             _move = move;
             X = x;
             Y = y;
@@ -22,7 +24,12 @@ namespace MyGame.src
 
         public void MoveEnemy()
         {
-            X -= _move;
+            _x -= _move * 1.4f;
+            Vector location = new Vector() { X = _x, Y = _y };
+            Vector playerPos = new Vector() { X = _player.XShip, Y = _player.YShip };
+            Vector velocity = playerPos.SubtractVector(location).UnitVector.Multiply(_move);
+            _x += velocity.X;
+            _y += velocity.Y;
         }
 
         public void Draw()
