@@ -11,21 +11,21 @@ namespace MyGame.src
     {
         private Bitmap _temp;
 
-        public bool EnemyHitShip(Player p, EnemyInstance e)
+        public bool EnemyHitShip(Player p, IEnemy e)
         {
             return SwinGame.BitmapCollision(e.Type, e.X, e.Y, p.Type, p.XShip, p.YShip);
         }
 
-        public bool WeaponHitEnemy(WeaponInstance w, EnemyInstance e)
+        public bool WeaponHitEnemy(WeaponInstance w, IEnemy e)
         {
             return SwinGame.BitmapCollision(w.Type, w.X, w.Y, e.Type, e.X, e.Y);
         }
 
-        public void CheckCollisionEnemyPlayer(Player p, EnemyManager e)
+        public void CheckCollisionEnemyPlayer(Player p, EnemyFactory e)
         {
-            List<EnemyInstance> enemies = e.EnemyList;
+            List<IEnemy> enemies = e.EnemyList;
 
-            foreach (EnemyInstance enemy in enemies.ToList())
+            foreach (IEnemy enemy in enemies.ToList())
             {
                 if (EnemyHitShip(p, enemy))
                 {
@@ -39,14 +39,14 @@ namespace MyGame.src
             }
         }
 
-        public void CheckCollisionWeaponEnemy(WeaponManager w, EnemyManager e)
+        public void CheckCollisionWeaponEnemy(WeaponManager w, EnemyFactory e)
         {
             List<WeaponInstance> weapons = w.WeaponList;
-            List<EnemyInstance> enemies = e.EnemyList;
+            List<IEnemy> enemies = e.EnemyList;
 
             foreach (WeaponInstance shot in weapons.ToList())
             {
-                foreach (EnemyInstance enemy in enemies.ToList())
+                foreach (IEnemy enemy in enemies.ToList())
                 {
                     if (WeaponHitEnemy(shot, enemy))
                     {

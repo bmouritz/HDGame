@@ -10,8 +10,7 @@ namespace MyGame.src
     public class EnemyManager
     { 
         private float _xEnemy, _yEnemy;
-        List<EnemyInstance> _enemyList = new List<EnemyInstance>();
-        private float _speed;
+        EnemyFactory enemyFactory;
         private Player _player;
 
         public EnemyManager(Player player)
@@ -19,64 +18,36 @@ namespace MyGame.src
             XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
             YEnemy = SwinGame.Rnd(720 - 100);
             _player = player;
-        }
+            enemyFactory = new EnemyFactory(XEnemy, YEnemy);
+    }
 
         public void EnemyStart()
         {
             for (int i = 0; i < 2; i++)
             {
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, SwinGame.BitmapNamed("enemy1"), _player));
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 8, SwinGame.BitmapNamed("enemy2"), _player));
-                EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 12, SwinGame.BitmapNamed("enemy3"), _player));
+                enemyFactory.GetFastEnemy();
+                enemyFactory.GetMediumEnemy();
+                enemyFactory.GetSlowEnemy();
             }
         }
 
         public void EnemyOffScreen()
         {
-            foreach (EnemyInstance enemy in _enemyList)
+            foreach (EnemyFactory enemy in enemyFactory.EnemyList)
             {
-                if(enemy.X == -100 || enemy.X < -100)
+                if(enemy.XEnemy == -100 || enemy.XEnemy < -100)
                 {
-                    enemy.X = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-                    enemy.Y = SwinGame.Rnd(720 - 100);
+                    enemy.XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+                    enemy.YEnemy = SwinGame.Rnd(720 - 100);
                 }
             }
         }
 
-        public void AddEnemyIfRemoved(Bitmap DestroyedEnemy)
-        {
-            XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-            YEnemy = SwinGame.Rnd(720 - 100);
-
-            if(DestroyedEnemy == SwinGame.BitmapNamed("enemy1"))
-            {
-                _speed = 10;
-            }
-
-            else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy2"))
-            {
-                _speed = 8;
-            }
-
-            else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy3"))
-            {
-                _speed = 12;
-            }
-
-
-            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, _speed, DestroyedEnemy, _player));
-        }
-
         public void Draw()
         {
-            foreach (EnemyInstance e in EnemyList)
-            {
-                e.Draw();
-            }
-            EnemyOffScreen();
+            enemyFactory.Draw();
         }
 
-        public List<EnemyInstance> EnemyList { get => _enemyList; set => _enemyList = value; }
         public float XEnemy { get => _xEnemy; set => _xEnemy = value; }
         public float YEnemy { get => _yEnemy; set => _yEnemy = value; }
     }

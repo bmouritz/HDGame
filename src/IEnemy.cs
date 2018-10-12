@@ -10,5 +10,9 @@ namespace MyGame.src
     public interface IEnemy
     {
         void Draw();
+
+        Bitmap Type { get; set; }
+        float X { get; set; }
+        float Y { get; set; }
     }
 }
