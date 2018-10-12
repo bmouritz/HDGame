@@ -24,7 +24,6 @@ namespace MyGame.src
         public void Move()
         {
             X -= _speed;
-            Draw();
         }
 
         public void Draw()

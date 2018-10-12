@@ -11,6 +11,7 @@ namespace MyGame.src
     { 
         private float _xEnemy, _yEnemy;
         List<EnemyInstance> _enemyList = new List<EnemyInstance>();
+        private float _speed;
 
         public EnemyManager()
         {
@@ -45,7 +46,23 @@ namespace MyGame.src
             XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
             YEnemy = SwinGame.Rnd(720 - 100);
 
-            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, 10, DestroyedEnemy));
+            if(DestroyedEnemy == SwinGame.BitmapNamed("enemy1"))
+            {
+                _speed = 10;
+            }
+
+            else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy2"))
+            {
+                _speed = 8;
+            }
+
+            else if (DestroyedEnemy == SwinGame.BitmapNamed("enemy3"))
+            {
+                _speed = 12;
+            }
+
+
+            EnemyList.Add(new EnemyInstance(XEnemy, YEnemy, _speed, DestroyedEnemy));
         }
 
         public void Draw()
