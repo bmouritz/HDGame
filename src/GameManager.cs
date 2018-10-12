@@ -52,6 +52,7 @@ namespace MyGame.src
         public void Update()
         {
             _player.MoveShip();
+            UpdatePlayerLife();
 
             _collision.CheckCollisionEnemyPlayer(_player, _enemyManager);
             _collision.CheckCollisionWeaponEnemy(_player.Weapon, _enemyManager);
@@ -85,6 +86,15 @@ namespace MyGame.src
             }
         }
 
+        public void UpdatePlayerLife()
+        {
+            if (GameData.Instance.PlayerHealth <= 0)
+            {
+                GameData.Instance.PlayerHealth = 100;
+                GameData.Instance.PlayerLives -= 1;
+            }
+        }
+
         //Draws the background and all required information in the level.
         public void DrawGameDetails()
         {
@@ -99,6 +109,8 @@ namespace MyGame.src
             SwinGame.DrawText(GameData.Instance.CurrentLevel.ToString(), Color.White, 1100, 35);
             SwinGame.DrawText("Shots: ", Color.White, 1040, 15);
             SwinGame.DrawText(_player.Weapon.Shots.ToString(), Color.White, 1100, 15);
+            SwinGame.DrawText("Lives: ", Color.White, 940, 15);
+            SwinGame.DrawText(GameData.Instance.PlayerLives.ToString(), Color.White, 1000, 15);
 
             if(_player.Weapon.Shots <= 0)
             {

@@ -11,7 +11,6 @@ namespace MyGame.src
     {
         private bool _clicked;
         private string _menuChoice;
-        private int _x, _y;
         private bool _active;
         MenuKind menuChoice = new MenuKind();
 
@@ -56,7 +55,7 @@ namespace MyGame.src
 
         public void MainMenu()
         {
-            menuChoice.Draw("menu", X, Y);
+            menuChoice.Draw("menu", menuChoice.X, menuChoice.Y);
             if (ButtonClicked(322, 231, 610, 120))
             {
                 do
@@ -84,6 +83,14 @@ namespace MyGame.src
             menuChoice.Draw("ship1", menuChoice.X, menuChoice.Y);
         }
 
+        public void DeathMenu()
+        {
+            menuChoice.X = 0; 
+            menuChoice.Y = 0;
+            menuChoice.Draw("replay", menuChoice.X, menuChoice.Y);
+            SwinGame.DrawText("Final Score: ", Color.White, 536, 243);
+            SwinGame.DrawText(GameData.Instance.Score.ToString(), Color.White, 700, 243);
+        }
 
         public void LoadAssets()
         {
@@ -91,12 +98,12 @@ namespace MyGame.src
             SwinGame.LoadBitmapNamed("howto", "menuhowto.png");
             SwinGame.LoadBitmapNamed("chooseship", "chooseship.png");
             SwinGame.LoadBitmapNamed("ship1", "shippick.png");
+            SwinGame.LoadBitmapNamed("replay", "replay.png");
         }
 
         public bool Clicked { get => _clicked; set => _clicked = value; }
         public string MenuChoice { get => _menuChoice; set => _menuChoice = value; }
-        public int Y { get => _y; set => _y = value; }
-        public int X { get => _x; set => _x = value; }
+
         public bool Active { get => _active; set => _active = value; }
     }
 }

@@ -24,6 +24,12 @@ namespace MyGame.src
             {
                 playing.Update();
                 playing.Render();
+
+                //if (GameData.Instance.PlayerLives == 0)
+                //    do
+                //    {
+                //        menu.DeathMenu();
+                //    } while (menu.ButtonClicked(542, 395, 180, 50));
             }
         }
     }
