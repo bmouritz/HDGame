@@ -48,24 +48,24 @@ namespace MyGame.src
 
         public void WrapObject()
         {
-            if (XShip < -((SwinGame.BitmapWidth(Bitmap))))
+            if (XShip < -((SwinGame.BitmapWidth(base.Type))))
             {
                 XShip = SwinGame.ScreenWidth();
             }
 
             else if (this.XShip > SwinGame.ScreenWidth())
             {
-                XShip = -SwinGame.BitmapWidth(Bitmap);
+                XShip = -SwinGame.BitmapWidth(base.Type);
             }
 
-            if (this.YShip < (-(SwinGame.BitmapHeight(this.Bitmap))))
+            if (this.YShip < (-(SwinGame.BitmapHeight(this.Type))))
             {
                 this.YShip = (SwinGame.ScreenHeight());
             }
 
             else if (this.YShip > SwinGame.ScreenHeight())
             {
-                this.YShip = -(SwinGame.BitmapHeight(this.Bitmap));
+                this.YShip = -(SwinGame.BitmapHeight(this.Type));
             }
         }
 
