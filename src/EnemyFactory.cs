@@ -10,36 +10,39 @@ namespace MyGame.src
     public class EnemyFactory
     {
         private float _xEnemy, _yEnemy;
-        private Bitmap _type;
         Player _player;
 
-        public EnemyFactory(float X, float Y, Player player)
+        public EnemyFactory(Player player)
         {
-            XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-            YEnemy = SwinGame.Rnd(720 - 100);
+            RandomCoords();
             _player = player;
         }
 
         public IEnemy GetSlowEnemy()
         {
-            Type = SwinGame.BitmapNamed("enemy1");
+            RandomCoords();
             return new EnemySlow(XEnemy, YEnemy, _player);
         }
 
         public IEnemy GetMediumEnemy()
         {
-            Type = SwinGame.BitmapNamed("enemy2");
+            RandomCoords();
             return new EnemyMedium(XEnemy, YEnemy);
         }
 
         public IEnemy GetFastEnemy()
         {
-            Type = SwinGame.BitmapNamed("enemy3");
+            RandomCoords();
             return new EnemyFast(XEnemy, YEnemy);
         }
 
-        public float XEnemy { get => _xEnemy; set => _xEnemy = value; }
-        public float YEnemy { get => _yEnemy; set => _yEnemy = value; }
-        public Bitmap Type { get => _type; set => _type = value; }
+        public void RandomCoords()
+        {
+            _xEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+            _yEnemy = SwinGame.Rnd(720 - 100);
+        }
+
+        public float XEnemy { get => _xEnemy; }
+        public float YEnemy { get => _yEnemy; }
     }
 }

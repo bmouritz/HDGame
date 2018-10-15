@@ -17,14 +17,14 @@ namespace MyGame.src
         public EnemyManager(Player player)
         {
             _player = player;
-            _enemyFactory = new EnemyFactory(XEnemy, XEnemy, _player);
+            _enemyFactory = new EnemyFactory(_player);
         }
 
         public void EnemyStart()
         {
             for (int i = 0; i < 2; i++)
             {
-                SetRandomXY();
+                //SetRandomXY();
                 EnemyList.Add(_enemyFactory.GetSlowEnemy());
                 EnemyList.Add(_enemyFactory.GetMediumEnemy());
                 EnemyList.Add(_enemyFactory.GetFastEnemy());
@@ -45,7 +45,6 @@ namespace MyGame.src
 
         public void AddEnemyIfRemoved(Bitmap DestroyedEnemy)
         {
-            SetRandomXY();
             if (DestroyedEnemy == SwinGame.BitmapNamed("enemy1"))
             {
                 EnemyList.Add(_enemyFactory.GetSlowEnemy());
@@ -71,11 +70,11 @@ namespace MyGame.src
             EnemyOffScreen();
         }
 
-        public void SetRandomXY()
-        {
-            XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-            YEnemy = SwinGame.Rnd(720 - 100);
-        }
+        //public void SetRandomXY()
+        //{
+        //    XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+        //    YEnemy = SwinGame.Rnd(720 - 100);
+        //}
 
         public float XEnemy { get => _xEnemy; set => _xEnemy = value; }
         public float YEnemy { get => _yEnemy; set => _yEnemy = value; }

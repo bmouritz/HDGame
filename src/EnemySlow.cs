@@ -7,23 +7,23 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class EnemySlow : IEnemy
+    public class EnemySlow : EnemyBase, IEnemy
     {
         private float _x, _y;
         private float _speed;
         private Bitmap _type;
         private Player _player;
 
-        public EnemySlow(float x, float y, Player player)
+        public EnemySlow(float x, float y, Player player) : base(x, y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
             _player = player;
             _speed = 5;
-            Type = SwinGame.BitmapNamed("enemy1");
+            this.Type = SwinGame.BitmapNamed("enemy1");
         }
 
-        public void Move()
+        public override void Move()
         {
             Vector location = new Vector() { X = _x, Y = _y };
             Vector playerPos = new Vector() { X = _player.XShip, Y = _player.YShip };
@@ -32,15 +32,5 @@ namespace MyGame.src
             _y += velocity.Y;
             _x -= _speed * 1.4f;
         }
-
-        public void Draw()
-        {
-            SwinGame.DrawBitmap(Type, X, Y);
-            Move();
-        }
-
-        public Bitmap Type { get => _type; set => _type = value; }
-        public float X { get => _x; set => _x = value; }
-        public float Y { get => _y; set => _y = value; }
     }
 }
