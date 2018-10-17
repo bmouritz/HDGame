@@ -10,14 +10,14 @@ namespace MyGame.src
     public class Player : GameObject, IDraw
     {
         private float _xShip, _yShip;
-        private float _move;
+        private float _speed;
         private Bitmap _type;
         GameObject ship = new GameObject(new string[] { "ship" } );
         WeaponManager _weapon = new WeaponManager();
 
         public Player(string[] name) : base(new string[] { "Player" } )
         {
-            _move = 10;
+            _speed = 10;
             XShip = 100;
             YShip = 100;
         }
@@ -27,22 +27,22 @@ namespace MyGame.src
             WrapObject();
             if (SwinGame.KeyDown(KeyCode.LeftKey))
             {
-                XShip -= ship.ChangeX(Move);
+                XShip -= ship.ChangeX(Speed);
             }
 
             if (SwinGame.KeyDown(KeyCode.RightKey))
             {
-                XShip += ship.ChangeX(Move);
+                XShip += ship.ChangeX(Speed);
             }
 
             if (SwinGame.KeyDown(KeyCode.UpKey))
             {
-                YShip -= ship.ChangeY(Move);
+                YShip -= ship.ChangeY(Speed);
             }
 
             if (SwinGame.KeyDown(KeyCode.DownKey))
             {
-                YShip += ship.ChangeY(Move);
+                YShip += ship.ChangeY(Speed);
             }
         }
 
@@ -79,7 +79,7 @@ namespace MyGame.src
             SwinGame.DrawBitmap(this.Type , XShip, YShip);
         }
 
-        public float Move { get => _move; set => _move = value; }
+        public float Speed { get => _speed; set => _speed = value; }
         public float XShip { get => _xShip; set => _xShip = value; }
         public float YShip { get => _yShip; set => _yShip = value; }
         public WeaponManager Weapon { get => _weapon; set => _weapon = value; }

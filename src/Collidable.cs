@@ -30,6 +30,7 @@ namespace MyGame.src
                 if (EnemyHitShip(p, enemy))
                 {
                     SwinGame.PlaySoundEffect("Explode");
+                    SwinGame.DrawBitmap("explode", p.X, p.Y);
                     enemies.Remove(enemy);
                     GameData.Instance.Score -= 3;
                     GameData.Instance.PlayerHealth -= 10;
@@ -56,6 +57,7 @@ namespace MyGame.src
                             w.RemoveLaserCollision(shot);
                         }
                         enemies.Remove(enemy);
+                        SwinGame.DrawBitmap("explode", enemy.X, enemy.Y);
                         GameData.Instance.Score += 1;
                         _temp = enemy.Type;
                         e.AddEnemyIfRemoved(_temp);

@@ -139,6 +139,8 @@ namespace MyGame.src
             SwinGame.LoadBitmapNamed("enemy1", "enemy1.png");
             SwinGame.LoadBitmapNamed("enemy2", "enemy2.png");
             SwinGame.LoadBitmapNamed("enemy3", "FinalBoss.png");
+            SwinGame.LoadBitmapNamed("explode", "explosion.png");
+
 
             SwinGame.LoadMusicNamed("Limits", "Limits.wav");
             SwinGame.LoadSoundEffectNamed("Laser", "laser.wav");
