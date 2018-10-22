@@ -27,6 +27,9 @@ namespace MyGame.src
             Type = SwinGame.BitmapNamed("enemy1");
         }
 
+        /// <summary>
+        /// This creates a vector between player and enemy, to attract the enemy to the player.
+        /// </summary>
         public void Move()
         {
             Vector location = new Vector() { X = X, Y = Y };

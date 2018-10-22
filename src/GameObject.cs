@@ -14,11 +14,21 @@ namespace MyGame.src
 
         public GameObject(string[] name) {}
 
+        /// <summary>
+        /// Changes the X value of the GameObjects.
+        /// </summary>
+        /// <param name="X">a X float.</param>
+        /// <returns>new X value</returns>
         public float ChangeX(float X)
         {
-            return Y = X++;
+            return X = X++;
         }
 
+        /// <summary>
+        /// Changes the Y value of the GameObjects.
+        /// </summary>
+        /// <param name="y">a Y float</param>
+        /// <returns>new Y value</returns>
         public float ChangeY(float y)
         {
             return Y = y++;

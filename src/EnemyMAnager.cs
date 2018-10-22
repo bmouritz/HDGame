@@ -20,6 +20,9 @@ namespace MyGame.src
             _enemyFactory = new EnemyFactory(_player);
         }
 
+        /// <summary>
+        /// Adds enemies to a list.
+        /// </summary>
         public void EnemyStart()
         {
             for (int i = 0; i < 2; i++)
@@ -31,6 +34,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Checks if any enemies are off screen, if so, reset them to the right of the screen randomly.
+        /// </summary>
         public void EnemyOffScreen()
         {
             foreach (IEnemy enemy in EnemyList)
@@ -43,6 +49,10 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Adds a new enemy of the same type if destroyed by a collision.
+        /// </summary>
+        /// <param name="DestroyedEnemy">The type of enemy that was destroy.</param>
         public void AddEnemyIfRemoved(Bitmap DestroyedEnemy)
         {
             if (DestroyedEnemy == SwinGame.BitmapNamed("enemy1"))
@@ -61,6 +71,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// All current enemies in the list, Draw them and check if they're off the screen.
+        /// </summary>
         public void Draw()
         {
             foreach (IEnemy e in EnemyList)
@@ -69,12 +82,6 @@ namespace MyGame.src
             }
             EnemyOffScreen();
         }
-
-        //public void SetRandomXY()
-        //{
-        //    XEnemy = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
-        //    YEnemy = SwinGame.Rnd(720 - 100);
-        //}
 
         public float XEnemy { get => _xEnemy; set => _xEnemy = value; }
         public float YEnemy { get => _yEnemy; set => _yEnemy = value; }

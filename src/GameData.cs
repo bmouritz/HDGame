@@ -22,6 +22,9 @@ namespace MyGame.src
             PlayerLives = 3;
         }
 
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
         public static GameData Instance
         {
             get
@@ -32,6 +35,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Public accessors for the singelton.
+        /// </summary>
         public int Score { get => _score; set => _score = value; }
         public int PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
         public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }

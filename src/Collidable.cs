@@ -11,16 +11,33 @@ namespace MyGame.src
     {
         private Bitmap _temp;
 
+        /// <summary>
+        /// This checks to see if any individual enemy and the player have collided.
+        /// </summary>
+        /// <param name="p">Is the player</param>
+        /// <param name="e">Is the enemy, taken from a list of enemies.</param>
+        /// <returns>True if the collision has occured</returns>
         public bool EnemyHitShip(Player p, IEnemy e)
         {
             return SwinGame.BitmapCollision(e.Type, e.X, e.Y, p.Type, p.XShip, p.YShip);
         }
 
+        /// <summary>
+        /// This checks if any of the laser shots have collided with an enemy.
+        /// </summary>
+        /// <param name="w">Is a single instance of a laser shot</param>
+        /// <param name="e">Is a single instance of an enemy</param>
+        /// <returns>True if the two object collide.</returns>
         public bool WeaponHitEnemy(WeaponInstance w, IEnemy e)
         {
             return SwinGame.BitmapCollision(w.Type, w.X, w.Y, e.Type, e.X, e.Y);
         }
 
+        /// <summary>
+        /// This runs via GameManger, through the game loop to iterate through all enemies and call the collision check.
+        /// </summary>
+        /// <param name="p">Is the player</param>
+        /// <param name="e">Is the list of enemies to iterate through</param>
         public void CheckCollisionEnemyPlayer(Player p, EnemyManager e)
         {
             List<IEnemy> enemies = e.EnemyList;
@@ -40,6 +57,11 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// This runs via GameManager, through the game loop to iterate through enemy and laser lists and calls the collision check.
+        /// </summary>
+        /// <param name="w">Is a list of all laser shots.</param>
+        /// <param name="e">Is a list of all enemies.</param>
         public void CheckCollisionWeaponEnemy(WeaponManager w, EnemyManager e)
         {
             List<WeaponInstance> weapons = w.WeaponList;

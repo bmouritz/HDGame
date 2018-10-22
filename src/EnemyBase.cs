@@ -19,11 +19,17 @@ namespace MyGame.src
             this.Y = y;
         }
 
+        /// <summary>
+        /// This is the default for the enemies movements.
+        /// </summary>
         public virtual void Move()
         {
             this.X -= this.Speed;
         }
 
+        /// <summary>
+        /// Tells the enemy to draw itself.
+        /// </summary>
         public virtual void Draw()
         {
             SwinGame.DrawBitmap(this.Type, this.X, this.Y);

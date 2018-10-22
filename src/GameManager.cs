@@ -22,6 +22,10 @@ namespace MyGame.src
             Active = true;
         }
 
+        /// <summary>
+        /// Checks if the game is running.
+        /// </summary>
+        /// <returns>False if windowclose is requested by user.</returns>
         public bool GameRunning()
         {
             if (SwinGame.WindowCloseRequested())
@@ -31,11 +35,17 @@ namespace MyGame.src
             return Active;
         }
 
+        /// <summary>
+        /// This starts the enemies when the game starts.
+        /// </summary>
         public void InitiateEnemies()
         {
             _enemyManager.EnemyStart();
         }
 
+        /// <summary>
+        /// Renders all objects in the game.
+        /// </summary>
         public void Render()
         {
             SwinGame.ProcessEvents();
@@ -49,6 +59,9 @@ namespace MyGame.src
             SwinGame.RefreshScreen();
         }
 
+        /// <summary>
+        /// Updates all the movements and collisions.
+        /// </summary>
         public void Update()
         {
             _player.MoveShip();
@@ -95,7 +108,9 @@ namespace MyGame.src
             }
         }
 
-        //Draws the background and all required information in the level.
+        /// <summary>
+        /// Draws the background, and all other required information.
+        /// </summary>
         public void DrawGameDetails()
         {
             SwinGame.DrawBitmap("background", 0, 0);
@@ -128,7 +143,9 @@ namespace MyGame.src
             }
         }
 
-
+        /// <summary>
+        /// Loads all resources ie: images and sounds for the game.
+        /// </summary>
         public void LoadResources()
         {
             SwinGame.LoadBitmapNamed("background", "background.png");

@@ -22,6 +22,9 @@ namespace MyGame.src
             YShip = 100;
         }
 
+        /// <summary>
+        /// This allows the player to move.
+        /// </summary>
         public void MoveShip()
         {
             WrapObject();
@@ -46,6 +49,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// This wraps the object around the screen.
+        /// </summary>
         public void WrapObject()
         {
             if (XShip < -((SwinGame.BitmapWidth(base.Type))))
@@ -69,6 +75,10 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// This allows the player to shoot itself weapon
+        /// </summary>
+        /// <param name="type">What type of laser will be created.</param>
         public void Shoot(Bitmap type)
         {
             Weapon.ShootWeapon(type, XShip, YShip);

@@ -17,6 +17,12 @@ namespace MyGame.src
             _shots = 15;
         }
 
+        /// <summary>
+        /// Processes the amount of shots available.
+        /// </summary>
+        /// <param name="type">what kind of laser</param>
+        /// <param name="X">Float</param>
+        /// <param name="Y">Float</param>
         public void ShootWeapon(Bitmap type, float X, float Y)
         {
             if (Shots > 0)
@@ -31,6 +37,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Removes all lasers from the list if off the screen.
+        /// </summary>
         public void RemoveLaserIfOffScreen()
         {
             foreach (WeaponInstance weapon in WeaponList.ToList())
@@ -42,6 +51,10 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Removes the laser from the list if a collision has occured.
+        /// </summary>
+        /// <param name="bullet"></param>
         public void RemoveLaserCollision(WeaponInstance bullet)
         {
             _weaponList.Remove(bullet);
@@ -56,6 +69,9 @@ namespace MyGame.src
             RemoveLaserIfOffScreen();
         }
 
+        /// <summary>
+        /// Reloads the laser if out of shots.
+        /// </summary>
         public void ReloadLaser()
         {
             _shots = 15;

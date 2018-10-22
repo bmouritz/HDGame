@@ -21,6 +21,10 @@ namespace MyGame.src
             Active = true;
         }
 
+        /// <summary>
+        /// Checks if the game is running.
+        /// </summary>
+        /// <returns>active or not.</returns>
         public bool Running()
         {
             if (SwinGame.WindowCloseRequested())
@@ -30,6 +34,10 @@ namespace MyGame.src
             return Active;
         }
 
+        /// <summary>
+        /// This checks where the user has clicked on the screen.
+        /// </summary>
+        /// <returns>Yes if clicked.</returns>
         public bool ButtonClicked(int paramX, int paramY, int width, int height)
         {
             Single xAxishover, yAxishover, btnWidth, btnHeight;
@@ -53,6 +61,9 @@ namespace MyGame.src
             return Clicked;
         }
 
+        /// <summary>
+        /// Runs through the main menu system.
+        /// </summary>
         public void MainMenu()
         {
             menuChoice.Draw("menu", menuChoice.X, menuChoice.Y);
@@ -66,6 +77,9 @@ namespace MyGame.src
             }
         }
 
+        /// <summary>
+        /// Draws the HowTo Menu
+        /// </summary>
         public void HowTo()
         {
             menuChoice.X = 217;
@@ -73,15 +87,6 @@ namespace MyGame.src
             menuChoice.Draw("howto", menuChoice.X, menuChoice.Y);
         }
 
-        public void ChooseShip()
-        {
-            menuChoice.Draw("chooseship", menuChoice.X, menuChoice.Y);
-        }
-
-        public void Ship1Choice()
-        {
-            menuChoice.Draw("ship1", menuChoice.X, menuChoice.Y);
-        }
 
         public void DeathMenu()
         {
@@ -92,6 +97,9 @@ namespace MyGame.src
             SwinGame.DrawText(GameData.Instance.Score.ToString(), Color.White, 700, 243);
         }
 
+        /// <summary>
+        /// Loads the assets for the menu systems.
+        /// </summary>
         public void LoadAssets()
         {
             SwinGame.LoadBitmapNamed("menu", "menu.png");
