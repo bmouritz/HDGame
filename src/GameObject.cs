@@ -12,7 +12,7 @@ namespace MyGame.src
         private float _x, _y;
         private Bitmap _type;
 
-        public GameObject(string[] name) {}
+        public GameObject() {}
 
         /// <summary>
         /// Changes the X value of the GameObjects.

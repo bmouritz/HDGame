@@ -9,7 +9,7 @@ namespace MyGame.src
     {
         private bool _active;
         private Bitmap _shotType;
-        Player _player = new Player(new string[] { "player" } );
+        Player _player = new Player();
         EnemyManager _enemyManager;
         Collidable _collision = new Collidable();
 
@@ -105,6 +105,23 @@ namespace MyGame.src
             {
                 GameData.Instance.PlayerHealth = 100;
                 GameData.Instance.PlayerLives -= 1;
+            }
+        }
+
+        /// <summary>
+        /// Reset the entire game back to starting positions.
+        /// </summary>
+        public void ResetGame()
+        {
+            GameData.Instance.PlayerHealth = 100;
+            GameData.Instance.Score = 0;
+            GameData.Instance.PlayerLives = 3;
+            _player.XShip = 100;
+            _player.YShip = 100;
+            foreach (IEnemy e in _enemyManager.EnemyList)
+            {
+                e.X = 1280 + (SwinGame.Rnd(SwinGame.ScreenWidth() + 500));
+                e.Y = SwinGame.Rnd(720 - 100);
             }
         }
 

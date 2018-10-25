@@ -27,7 +27,6 @@ namespace MyGame.src
         {
             for (int i = 0; i < 2; i++)
             {
-                //SetRandomXY();
                 EnemyList.Add(_enemyFactory.GetSlowEnemy());
                 EnemyList.Add(_enemyFactory.GetMediumEnemy());
                 EnemyList.Add(_enemyFactory.GetFastEnemy());

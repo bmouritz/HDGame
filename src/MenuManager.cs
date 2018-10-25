@@ -93,6 +93,10 @@ namespace MyGame.src
             menuChoice.X = 0; 
             menuChoice.Y = 0;
             menuChoice.Draw("replay", menuChoice.X, menuChoice.Y);
+        }
+
+        public void FinalScore()
+        {
             SwinGame.DrawText("Final Score: ", Color.White, 536, 243);
             SwinGame.DrawText(GameData.Instance.Score.ToString(), Color.White, 700, 243);
         }

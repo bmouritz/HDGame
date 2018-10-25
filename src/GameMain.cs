@@ -22,14 +22,21 @@ namespace MyGame.src
 
             while (playing.GameRunning() == true)
             {
-                playing.Update();
-                playing.Render();
+                while (GameData.Instance.PlayerLives != 0)
+                {
+                    playing.Update();
+                    playing.Render();
+                    if (GameData.Instance.PlayerLives == 0)
+                    {
+                        while (menu.ButtonClicked(542, 395, 180, 50) == false)
+                        {
+                            menu.DeathMenu();
+                            menu.FinalScore();
+                            playing.ResetGame();
+                        }
+                    }
+                }
 
-                //if (GameData.Instance.PlayerLives == 0)
-                //    do
-                //    {
-                //        menu.DeathMenu();
-                //    } while (menu.ButtonClicked(542, 395, 180, 50));
             }
         }
     }

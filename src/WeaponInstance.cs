@@ -21,6 +21,9 @@ namespace MyGame.src
             Type = type;
         }
 
+        /// <summary>
+        /// Moves the laser across the screen.
+        /// </summary>
         public void ProcessMovement()
         {
             X += _laserSpeed;

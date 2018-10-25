@@ -7,17 +7,14 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class EnemyBase : IEnemy
+    public abstract class EnemyBase : IEnemy
     {
         private float _x, _y;
         private Bitmap _type;
         private float _speed;
 
-        public EnemyBase(float x, float y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
+        public EnemyBase()
+        {        }
 
         /// <summary>
         /// This is the default for the enemies movements.

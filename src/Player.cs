@@ -12,10 +12,10 @@ namespace MyGame.src
         private float _xShip, _yShip;
         private float _speed;
         private Bitmap _type;
-        GameObject ship = new GameObject(new string[] { "ship" } );
+        GameObject ship = new GameObject();
         WeaponManager _weapon = new WeaponManager();
 
-        public Player(string[] name) : base(new string[] { "Player" } )
+        public Player()
         {
             _speed = 10;
             XShip = 100;
@@ -59,19 +59,19 @@ namespace MyGame.src
                 XShip = SwinGame.ScreenWidth();
             }
 
-            else if (this.XShip > SwinGame.ScreenWidth())
+            else if (XShip > SwinGame.ScreenWidth())
             {
                 XShip = -SwinGame.BitmapWidth(base.Type);
             }
 
-            if (this.YShip < (-(SwinGame.BitmapHeight(this.Type))))
+            if (YShip < (-(SwinGame.BitmapHeight(base.Type))))
             {
-                this.YShip = (SwinGame.ScreenHeight());
+                YShip = (SwinGame.ScreenHeight());
             }
 
-            else if (this.YShip > SwinGame.ScreenHeight())
+            else if (YShip > SwinGame.ScreenHeight())
             {
-                this.YShip = -(SwinGame.BitmapHeight(this.Type));
+                YShip = -(SwinGame.BitmapHeight(base.Type));
             }
         }
 
@@ -86,13 +86,13 @@ namespace MyGame.src
 
         public override void Draw()
         {
-            SwinGame.DrawBitmap(this.Type , XShip, YShip);
+            SwinGame.DrawBitmap(Type , XShip, YShip);
         }
 
         public float Speed { get => _speed; set => _speed = value; }
         public float XShip { get => _xShip; set => _xShip = value; }
         public float YShip { get => _yShip; set => _yShip = value; }
         public WeaponManager Weapon { get => _weapon; set => _weapon = value; }
-        public Bitmap Type { get => _type; set => _type = value; }
+       // public Bitmap Type { get => _type; set => _type = value; }
     }
 }

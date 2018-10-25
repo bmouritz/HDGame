@@ -60,6 +60,9 @@ namespace MyGame.src
             _weaponList.Remove(bullet);
         }
 
+        /// <summary>
+        /// Draws all instances of the weapons, and calls the method to check if they are offscreen.
+        /// </summary>
         public void Draw()
         {
             foreach (WeaponInstance _weapon in WeaponList)
@@ -74,7 +77,7 @@ namespace MyGame.src
         /// </summary>
         public void ReloadLaser()
         {
-            _shots = 15;
+            _shots += 15;
             SwinGame.PlaySoundEffect("Ammo");
         }
 
