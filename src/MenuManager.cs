@@ -95,12 +95,6 @@ namespace MyGame.src
             menuChoice.Draw("replay", menuChoice.X, menuChoice.Y);
         }
 
-        public void FinalScore()
-        {
-            SwinGame.DrawText("Final Score: ", Color.White, 536, 243);
-            SwinGame.DrawText(GameData.Instance.Score.ToString(), Color.White, 700, 243);
-        }
-
         /// <summary>
         /// Loads the assets for the menu systems.
         /// </summary>
@@ -115,7 +109,6 @@ namespace MyGame.src
 
         public bool Clicked { get => _clicked; set => _clicked = value; }
         public string MenuChoice { get => _menuChoice; set => _menuChoice = value; }
-
         public bool Active { get => _active; set => _active = value; }
     }
 }

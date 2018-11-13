@@ -31,7 +31,6 @@ namespace MyGame.src
                         while (menu.ButtonClicked(542, 395, 180, 50) == false)
                         {
                             menu.DeathMenu();
-                            menu.FinalScore();
                             playing.ResetGame();
                         }
                     }

@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace MyGame.src
 {
-    public class GameObject : IDraw
+    public class GameObject
     {
         private float _x, _y;
         private Bitmap _type;

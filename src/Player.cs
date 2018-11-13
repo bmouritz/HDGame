@@ -93,6 +93,5 @@ namespace MyGame.src
         public float XShip { get => _xShip; set => _xShip = value; }
         public float YShip { get => _yShip; set => _yShip = value; }
         public WeaponManager Weapon { get => _weapon; set => _weapon = value; }
-       // public Bitmap Type { get => _type; set => _type = value; }
     }
 }
